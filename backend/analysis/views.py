@@ -1,11 +1,11 @@
-from django.http import JsonResponse
+from rest_framework.views import APIView
+from rest_framework.response import Response
 
-
-def analyze_student(request):
-    result = {
-        'performance': 'Excellent',
-        'score': 92,
-        'prediction': 'Top Performer'
-    }
-
-    return JsonResponse(result)
+class DashboardView(APIView):
+    def get(self, request):
+        return Response({
+            "students": 500,
+            "attendance": 92,
+            "at_risk": 35,
+            "insights": 15
+        })
