@@ -39,12 +39,12 @@ const handleSubmit = async (e) => {
       }
     );
 
+    const data = await response.json();
+
     if (!response.ok) {
-      alert("Invalid email or password");
+      alert(data.error || "Invalid email or password");
       return;
     }
-
-    const data = await response.json();
 
     localStorage.setItem("user", JSON.stringify(data));
     navigate("/dashboard");
@@ -53,7 +53,6 @@ const handleSubmit = async (e) => {
     console.error(error);
   }
 };
-
   return (
     <div className="min-h-screen bg-[#F8FAFC] flex items-center justify-center p-6">
       <div className="w-full max-w-5xl bg-white rounded-3xl shadow-2xl border border-slate-200 overflow-hidden grid md:grid-cols-2">
