@@ -16,16 +16,43 @@ export default function Login() {
 
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    if (!form.email || !form.password) {
-      alert("Please enter email and password");
+  if (!form.email || !form.password) {
+    alert("Please enter email and password");
+    return;
+  }
+
+  try {
+    const response = await fetch(
+      "https://tamil12354.pythonanywhere.com/api/login/",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: form.email,
+          password: form.password,
+        }),
+      }
+    );
+
+    if (!response.ok) {
+      alert("Invalid email or password");
       return;
     }
 
+    const data = await response.json();
+
+    localStorage.setItem("user", JSON.stringify(data));
     navigate("/dashboard");
-  };
+  } catch (error) {
+    alert("Backend connection failed");
+    console.error(error);
+  }
+};
 
   return (
     <div className="min-h-screen bg-[#F8FAFC] flex items-center justify-center p-6">
