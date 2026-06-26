@@ -1,7 +1,5 @@
 import axios from "axios";
 
-const API = axios.create({
-  baseURL: "http://127.0.0.1:8000/api/",
+export default axios.create({
+  baseURL: "https://tamil12354.pythonanywhere.com/api",
 });
-
-export default API;
