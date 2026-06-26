@@ -25,9 +25,11 @@ SECRET_KEY = 'django-insecure-x(_wom9315%b7ucd1ndme)2h+c34k&8l)@uswt3@3suheg!1!x
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
-
+CORS_ALLOWED_ORIGINS = [
+    "https://ai-student-analysis-dashboard-p589.vercel.app",
+]
 # Application definition
 
 INSTALLED_APPS = [
